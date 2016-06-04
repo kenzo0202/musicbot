@@ -34,7 +34,7 @@
 //                onError();
 //                return; 
 //            }
-            http.get(this.endpoint+encodeURIComponent(freetext)+'&country=jp&media=music&attribute=artistTerm&limit=1', function(res) {
+            http.get(this.endpoint+encodeURIComponent(freetext)+'&country=jp&media=music&attribute=artistTerm&limit=5', function(res) {
                 var body = '';
                 res.setEncoding('utf8');
                 res.on('data', function(chunk) {
@@ -133,7 +133,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:result.results[0].trackName
+                text:'①'+result.results[0].trackName+'②'+result.results[1].trackName+'③'+result.results[2].trackName+'④'+result.results[3].trackName+'⑤'+result.results[4].trackName
             }
             //フェイスブックページのメッセの返答部分
             request({
