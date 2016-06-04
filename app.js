@@ -133,7 +133,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:result.results.trackName
+                text:result.resultCount
             }
             //フェイスブックページのメッセの返答部分
             request({
