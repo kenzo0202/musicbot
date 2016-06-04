@@ -18,7 +18,7 @@
     };
 
     AddressManager.prototype = {
-        endpoint:'http://itunes.apple.com/search?term=',
+        endpoint:'http://itunes.apple.com/search?term=';
 //        parseZipcode:function(freetext){
 //            var code;
 //            if(code = freetext.match(/\d{3}\-\d{4}/)){
@@ -27,14 +27,28 @@
 //                return [];
 //            }
 //        },
+        
+          parseArtist:function(freetext){
+              var code;
+              if(code = freetext.match(/(\S+)のおすすめは何ですか？/)){
+                  return code[1];
+              }else{
+                  return [];
+              }
+          }
         getAddress:function(freetext, onSuccess, onError){
+              var parsedArtist = this.parseArtist(freetext);
+                if(!parsedCodes) {
+                    onError();
+                    return; 
+                }
             //freetext=ユーザーが送ってきたワード
 //            var parsedCodes = this.parseZipcode(freetext);
 //            if(!parsedCodes) {
 //                onError();
 //                return; 
 //            }
-            http.get(this.endpoint+encodeURIComponent(freetext)+'&country=jp&media=music&attribute=artistTerm&limit=5', function(res) {
+            http.get(this.endpoint+encodeURIComponent(parsedArtist)+'&country=jp&media=music&attribute=artistTerm&limit=5', function(res) {
                 var body = '';
                 res.setEncoding('utf8');
                 res.on('data', function(chunk) {
@@ -133,7 +147,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:'①'+result.results[0].trackName+'②'+result.results[1].trackName+'③'+result.results[2].trackName+'④'+result.results[3].trackName+'⑤'+result.results[4].trackName
+                text:'①'+result.results[0].trackName+'②'+result.results[1].trackName+'③'+result.results[2].trackName+'④'+result.results[3].trackName+'⑤'+result.results[4].trackName+'がおすすめだよ！！'
             }
             //フェイスブックページのメッセの返答部分
             request({
