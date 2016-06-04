@@ -18,7 +18,7 @@
     };
 
     AddressManager.prototype = {
-        endpoint:'http://itunes.apple.com/search?term=';
+        endpoint:'http://itunes.apple.com/search?term=',
 //        parseZipcode:function(freetext){
 //            var code;
 //            if(code = freetext.match(/\d{3}\-\d{4}/)){
@@ -28,14 +28,14 @@
 //            }
 //        },
         
-          parseArtist:function(freetext){
+        parseArtist:function(freetext){
               var code;
               if(code = freetext.match(/(\S+)のおすすめは何ですか？/)){
                   return code[1];
               }else{
                   return [];
               }
-          }
+        },
         getAddress:function(freetext, onSuccess, onError){
               var parsedArtist = this.parseArtist(freetext);
                 if(!parsedCodes) {
