@@ -11,7 +11,7 @@
     qs = require('querystring'),
     request = require('request');
 
-    var token = 'EAAPdVaHgeuEBALHQBwGXfpE4PMgEGWgfokZC1tGi9jInee1XjA6oBNMEU8PAUx4xwONCKRzgyLRTym9wXfTkqj4OMdzZB2JEvPPv1E5WuAlnrOpKRWcr0Cn9tZA8mrZBFrudcbgDZAHktIVir4AZBOjsaBk17jpAAPhjwKkEk9dQZDZD';
+    var token = 'EAAPdVaHgeuEBAJhHVMZAfZCdQGdBcve9ZB06ij3mpyYluNKzAx0Y5ELixeuleu3vuQLko1pPpaZCAfEqcOcE7vkrbVaJANVZCV6LiRwAbjZALZAqrw9OG6KIv6RksOqZBZAYRcwtMZCZB1pP8Cnwjb1EOM3Jgsy3QrUZAQIgcIPJyhDJXAZDZD';
     //住所情報を取得する処理をまとめておく
     var AddressManager = function(){
         this.zipcode = '';  //ex.100-1234
