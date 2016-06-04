@@ -133,7 +133,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:result.resultCount
+                text:result.results.artistName
             }
             //フェイスブックページのメッセの返答部分
             request({
