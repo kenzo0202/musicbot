@@ -147,7 +147,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:'①'+result.results[0].trackName+'②'+result.results[1].trackName+'③'+result.results[2].trackName+'④'+result.results[3].trackName+'⑤'+result.results[4].trackName+'がおすすめだよ！！'
+                text:'①'+result.results[0].trackName+'\n②'+result.results[1].trackName+'\n③'+result.results[2].trackName+'\n④'+result.results[3].trackName+'\n⑤'+result.results[4].trackName+'\nがおすすめだよ！！'
             }
             //フェイスブックページのメッセの返答部分
             request({
