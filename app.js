@@ -2,8 +2,6 @@
  * node.js sample code
  * ref http://onlineconsultant.jp/pukiwiki/?node.js%20GET%20POST%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B
  * author Ryosuke Murai (Retty.Inc)
- 
- https://itunes.apple.com/search?term=%E3%82%B2%E3%82%B9%E3%81%AE%E6%A5%B5%E3%81%BF%E4%B9%99%E5%A5%B3&country=jp&limit=3&media=music&attribute=artistTerm&results=trackName
  */
 (function(){
     //必要なモジュールを呼び出して準備する
@@ -94,8 +92,8 @@
     //リクエストが正常に受け付けられた際の処理を関数化
     function sendResponse(param, response){
         var messaging_events = param.entry[0].messaging,
-        console.log(param.entry[0]);
         replayMessages = [], text="", sender="";
+        console.log(param.entry[0]);
         //リクエストのメッセテキストの有無で場合分け
         if (messaging_events.length > 0) {
             event = messaging_events[0];
