@@ -1,0 +1,15 @@
+{
+  "name": "initial-bot",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engine": {
+    "node": "v0.11.x",
+    "npm": "1.3.x"
+  },
+  "dependencies": {
+    "request": "*"
+  }
+}
