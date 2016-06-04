@@ -34,7 +34,7 @@
 //                onError();
 //                return; 
 //            }
-            http.get(this.endpoint+freetext+'&country=jp&media=music&attribute=artistTerm&limit=1', function(res) {
+            http.get(this.endpoint+freetext+'&country=jp&media=music&attribute=artistTerm&limit=3', function(res) {
                 var body = '';
                 res.setEncoding('utf8');
                 res.on('data', function(chunk) {
