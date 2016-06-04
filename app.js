@@ -38,7 +38,7 @@
         },
         getAddress:function(freetext, onSuccess, onError){
               var parsedArtist = this.parseArtist(freetext);
-                if(!parsedCodes) {
+                if(!parsedArtist) {
                     onError();
                     return; 
                 }
