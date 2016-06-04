@@ -18,7 +18,7 @@
     };
 
     AddressManager.prototype = {
-        endpoint:'https://itunes.apple.com/search?term=',
+        endpoint:'http://itunes.apple.com/search?term=',
 //        parseZipcode:function(freetext){
 //            var code;
 //            if(code = freetext.match(/\d{3}\-\d{4}/)){
@@ -135,7 +135,6 @@
             var messageData = {
                 text:result.results[0].trackName
             }
-            
             //フェイスブックページのメッセの返答部分
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
