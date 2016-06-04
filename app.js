@@ -18,23 +18,23 @@
     };
 
     AddressManager.prototype = {
-        endpoint:'http://api.thni.net/jzip/X0401/JSON/',
-        parseZipcode:function(freetext){
-            var code;
-            if(code = freetext.match(/\d{3}\-\d{4}/)){
-                return code[0].split('-');
-            } else {
-                return [];
-            }
-        },
+        endpoint:'https://itunes.apple.com/search?term=',
+//        parseZipcode:function(freetext){
+//            var code;
+//            if(code = freetext.match(/\d{3}\-\d{4}/)){
+//                return code[0].split('-');
+//            } else {
+//                return [];
+//            }
+//        },
         getAddress:function(freetext, onSuccess, onError){
-            console.log(freetext);
-            var parsedCodes = this.parseZipcode(freetext);
-            if(!parsedCodes) {
-                onError();
-                return; 
-            }
-            http.get(this.endpoint+parsedCodes[0]+'/'+parsedCodes[1]+'.js', function(res) {
+            //freetext=ユーザーが送ってきたワード
+//            var parsedCodes = this.parseZipcode(freetext);
+//            if(!parsedCodes) {
+//                onError();
+//                return; 
+//            }
+            http.get(this.endpoint+freetext+'&country=jp&media=music&attribute=artistTerm&limit=1', function(res) {
                 var body = '';
                 res.setEncoding('utf8');
                 res.on('data', function(chunk) {
@@ -73,7 +73,7 @@
             }
             return;
         }
-
+        //POSTのみ受け付ける　webhookにリクエストを送る
         if(req.method=='POST') {
             var body='';
             //送信されたデータの受信
@@ -81,7 +81,10 @@
                 body +=data;
             });
             req.on('end',function(){
+                //querystringはクエリ文字列をオブジェクトに変換してくれる
                 qs.parse(body);
+                //JSON.parse() メソッドは JSON 文字列をパースし、 JavaScript のオブジェクトに変換します
+                //正常にリクエストが受け付けられたら、レスポンスでテキストを返す
                 sendResponse(JSON.parse(body), res);
             });
         } else if(req.method=='GET') {
@@ -93,8 +96,32 @@
     function sendResponse(param, response){
         var messaging_events = param.entry[0].messaging,
         replayMessages = [], text="", sender="";
-        console.log(param.entry[0]);
         //リクエストのメッセテキストの有無で場合分け
+//{
+//  "object":"page",
+//  "entry":[
+//    {
+//      "id":"PAGE_ID",
+//      "time":1460245674269,
+//      "messaging":[
+//        {
+//          "sender":{
+//            "id":"USER_ID"
+//          },
+//          "recipient":{
+//            "id":"PAGE_ID"
+//          },
+//          "timestamp":1460245672080,
+//          "message":{
+//            "mid":"mid.1460245671959:dad2ec9421b03d6f78",
+//            "seq":216,
+//            "text":"hello"
+//          }
+//        }
+//      ]
+//    }
+//  ]
+//}
         if (messaging_events.length > 0) {
             event = messaging_events[0];
             sender = event.sender.id;
@@ -104,9 +131,12 @@
         }
         var manage = new AddressManager();
         manage.getAddress(text, function(result){
+            //メッセージの部分
             var messageData = {
-                text:result.stateName+result.city+result.street
+                text:result.results[0].trackName
             }
+            
+            //フェイスブックページのメッセの返答部分
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
                 qs: {access_token:token},
