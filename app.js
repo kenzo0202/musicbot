@@ -141,7 +141,12 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:result.results[0].previewUrl
+                attachment:{
+                    type:"audio",
+                    payload:{
+                        url: result.results[0].previewUrl
+                    }
+                }
             };
             //フェイスブックページのメッセの返答部分
             request({
@@ -150,14 +155,7 @@
                 method: 'POST',
                 json: {
                     recipient: {id:sender},
-                    message: {
-                        attachment:{
-                            type: "audio",
-                            payload:{
-                                url: messageData.text
-                            }
-                        }
-                    }
+                    message: messageData
                 }
             }, function(error, response, body) {
                 if (error) {
