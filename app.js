@@ -141,7 +141,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                music:result.results[0].previewUrl
+                text:result.results[0].previewUrl
             }
             //フェイスブックページのメッセの返答部分
             request({
@@ -150,11 +150,12 @@
                 method: 'POST',
                 json: {
                     recipient: {id:sender},
+                    // message: messageData,
                     message: {
                         attachment:{
-                            type: "audio",
+                            type: audio,
                             payload:{
-                                url: "https://petersapparel.com/bin/clip.mp3"
+                                url: messageData.text
                             }
                         }
                     }
