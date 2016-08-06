@@ -42,7 +42,7 @@
 //                onError();
 //                return; 
 //            }
-            http.get(this.endpoint+encodeURIComponent(parsedArtist)+'&country=jp&media=music&attribute=artistTerm&limit=5', function(res) {
+            http.get(this.endpoint+encodeURIComponent(parsedArtist)+'&country=jp&media=music&attribute=artistTerm&limit=1', function(res) {
                 var body = '';
                 res.setEncoding('utf8');
                 res.on('data', function(chunk) {
