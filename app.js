@@ -176,10 +176,10 @@
                 //         }]
                 //     }
                 // }
-                attachment:{
-                    type:"audio",
-                    payload:{
-                        url: result.results[0].previewUrl
+                attachment: {
+                    type: "audio",
+                    payload: {
+                        url: "http://www.hmix.net/music/n/n114.mp3"
                     }
                 }
             };
