@@ -150,10 +150,9 @@
                 method: 'POST',
                 json: {
                     recipient: {id:sender},
-                    // message: messageData,
                     message: {
                         attachment:{
-                            type: audio,
+                            type: "audio",
                             payload:{
                                 url: "https://petersapparel.com/bin/clip.mp3"
                             }
