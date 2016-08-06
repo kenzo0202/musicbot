@@ -27,7 +27,6 @@
 //                return [];
 //            }
 //        },
-        
         parseArtist:function(freetext){
               var code;
               if(code = freetext.match(/(\S+)のおすすめは何ですか？/)){
@@ -147,7 +146,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:'①'+result.results[0].trackName+'\n②'+result.results[1].trackName+'\n③'+result.results[2].trackName+'\n④'+result.results[3].trackName+'\n⑤'+result.results[4].trackName+'\nがおすすめだよ！！'
+                text:'①'+result.results[0].trackName+'\n②'+result.results[1].trackName+'\n③'+result.results[2].trackName+'\n④'+result.results[3].trackName+'\nがおすすめだよ！！'
             }
             //フェイスブックページのメッセの返答部分
             request({
