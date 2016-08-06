@@ -1,8 +1,3 @@
-/**
- * node.js sample code
- * ref http://onlineconsultant.jp/pukiwiki/?node.js%20GET%20POST%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B
- * author Ryosuke Murai (Retty.Inc)
- */
 (function(){
     //必要なモジュールを呼び出して準備する
     var sys = require ('sys'),
@@ -11,7 +6,7 @@
     qs = require('querystring'),
     request = require('request');
 
-    var token = 'EAAPdVaHgeuEBAJhHVMZAfZCdQGdBcve9ZB06ij3mpyYluNKzAx0Y5ELixeuleu3vuQLko1pPpaZCAfEqcOcE7vkrbVaJANVZCV6LiRwAbjZALZAqrw9OG6KIv6RksOqZBZAYRcwtMZCZB1pP8Cnwjb1EOM3Jgsy3QrUZAQIgcIPJyhDJXAZDZD';
+    var token = 'EAAPdVaHgeuEBAIYKTEZAn9duqGdlolnhwxCCNACJA04hKyjyChiBmqYwOlkW72eA7MwzY7kdxxaIbZByXFho2Yea9OYn4kEzhoOPSJkLqRe1CAKeSnZA741dA8GF2iuiSpKsdXmy1S6FXg1qLOcNq12XYRtXiSP4XRrsR7ZBWwZDZD';
     //住所情報を取得する処理をまとめておく
     var AddressManager = function(){
         this.zipcode = '';  //ex.100-1234
@@ -146,7 +141,7 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                text:'①'+result.results[0].trackName+'\n②'+result.results[1].trackName+'\n③'+result.results[2].trackName+'\n④'+result.results[3].trackName+'\nがおすすめだよ！！'
+                music:result.results[0].previewUrl
             }
             //フェイスブックページのメッセの返答部分
             request({
@@ -155,7 +150,15 @@
                 method: 'POST',
                 json: {
                     recipient: {id:sender},
-                    message: messageData,
+                    // message: messageData,
+                    message: {
+                        attachment:{
+                            type: audio,
+                            payload:{
+                                url: messageData.music
+                            }
+                        }
+                    }
                 }
             }, function(error, response, body) {
                 if (error) {
