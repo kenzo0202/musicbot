@@ -142,7 +142,7 @@
             //メッセージの部分
             var messageData = {
                 text:result.results[0].previewUrl
-            }
+            };
             //フェイスブックページのメッセの返答部分
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -150,12 +150,11 @@
                 method: 'POST',
                 json: {
                     recipient: {id:sender},
-                    // message: messageData,
                     message: {
                         attachment:{
-                            type: audio,
+                            type: "audio",
                             payload:{
-                                url: messageData.text
+                                url: messageData
                             }
                         }
                     }
