@@ -141,12 +141,47 @@
         manage.getAddress(text, function(result){
             //メッセージの部分
             var messageData = {
-                attachment:{
-                    type:"audio",
-                    payload:{
-                        url: result.results[0].previewUrl
+                attachment: {
+                    type: "template",
+                    payload: {
+                        template_type: "generic",
+                        elements: [{
+                            title: "rift",
+                            subtitle: "Next-generation virtual reality",
+                            item_url: "https://www.oculus.com/en-us/rift/",
+                            image_url: "http://messengerdemo.parseapp.com/img/rift.png",
+                            buttons: [{
+                                type: "web_url",
+                                url: "https://www.oculus.com/en-us/rift/",
+                                title: "Open Web URL"
+                            }, {
+                                type: "postback",
+                                title: "Call Postback",
+                                payload: "Payload for first bubble",
+                            }],
+                        }, {
+                            title: "touch",
+                            subtitle: "Your Hands, Now in VR",
+                            item_url: "https://www.oculus.com/en-us/touch/",
+                            image_url: "http://messengerdemo.parseapp.com/img/touch.png",
+                            buttons: [{
+                                type: "web_url",
+                                url: "https://www.oculus.com/en-us/touch/",
+                                title: "Open Web URL"
+                            }, {
+                                type: "postback",
+                                title: "Call Postback",
+                                payload: "Payload for second bubble",
+                            }]
+                        }]
                     }
                 }
+                // attachment:{
+                //     type:"audio",
+                //     payload:{
+                //         url: result.results[0].previewUrl
+                //     }
+                // }
             };
             //フェイスブックページのメッセの返答部分
             request({
@@ -163,8 +198,7 @@
                 } else if (response.body.error) {
                     console.log('Error: ', response.body.error);
                 }
-            }); 
-            response.end(result.stateName+result.city+result.street);
+            });
         }, function(){
             response.end('error');
         });
