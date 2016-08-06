@@ -154,7 +154,7 @@
                         attachment:{
                             type: "audio",
                             payload:{
-                                url: messageData
+                                url: messageData.text
                             }
                         }
                     }
